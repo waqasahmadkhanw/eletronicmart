@@ -7,6 +7,10 @@ export const ROLES = {
 export const ROUTES = {
   // Public
   HOME: "/",
+  ABOUT: "/about",
+  CONTACT: "/contact-us",
+  PRIVACY: "/privacy",
+  // PRIVACY: "/terms",
   SHOP: "/shop",
   PRODUCT_DETAILS: "/product/:productId",
   CATEGORY: "/category/:categorySlug",
