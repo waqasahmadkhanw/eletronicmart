@@ -1,36 +1,22 @@
-// import { Outlet } from "react-router-dom";
-
-// // import Navbar from "../shared/components/navbar/Navbar";
-// // import Footer from "../shared/components/footer/Footer";
-// import Navbar from "../components/Navbar";
-// import Footer from "../components/Footer";
-
-// export default function MainLayout() {
-//   return (
-//     <div className="min-h-screen bg-slate-50 flex flex-col">
-
-//       <Navbar/>
-
-//       <main className="flex-1 container mx-auto px-4 py-6">
-//         <Outlet />
-//       </main>
-
-//       <Footer />
-
-//     </div>
-//   );
-// }
 import { Outlet } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Footer from "./Footer";
+import PageContainer from "./PageContainer";
+import BackToTop from "../../modules/public/components/Common/BackToTop";
 
 const MainLayout = () => {
   return (
-    <>
-      <Header />
-      <Outlet />
+    <div className="flex min-h-screen flex-col bg-gray-50">
+      {/* Main Content */}
+      <main className="flex-1">
+        <PageContainer>
+          <Outlet />
+        </PageContainer>
+      </main>
+
+      {/* Footer */}
       <Footer />
-    </>
+         <BackToTop />
+    </div>
   );
 };
 

@@ -1,136 +1,138 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import {
-  fetchFeaturedCategories,
-  fetchFeaturedProducts,
-  fetchNewArrivals,
-  fetchTestimonials,
+  getHomeData,
+  getFeaturedProducts,
+  getCategories,
+  getDeals,
+  getBrands,
+  getTestimonials,
+  getBlogs,
+  getBlogDetails,
+  submitContactForm,
   subscribeNewsletter,
-  sendContactMessage,
 } from "./publicThunks";
 
 const initialState = {
-  featuredCategories: [],
+  homeData: null,
   featuredProducts: [],
-  newArrivals: [],
+  categories: [],
+  deals: [],
+  brands: [],
   testimonials: [],
+  blogs: [],
+  blogDetails: null,
 
   loading: false,
+  success: false,
   error: null,
-
-  newsletterLoading: false,
-  newsletterSuccess: false,
-
-  contactLoading: false,
-  contactSuccess: false,
 };
 
 const publicSlice = createSlice({
   name: "public",
   initialState,
   reducers: {
-    clearNewsletterStatus: (state) => {
-      state.newsletterSuccess = false;
-    },
-
-    clearContactStatus: (state) => {
-      state.contactSuccess = false;
-    },
-
     clearError: (state) => {
       state.error = null;
+    },
+
+    clearSuccess: (state) => {
+      state.success = false;
+    },
+
+    clearBlogDetails: (state) => {
+      state.blogDetails = null;
     },
   },
 
   extraReducers: (builder) => {
     builder
 
-      // Featured Categories
-      .addCase(fetchFeaturedCategories.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchFeaturedCategories.fulfilled, (state, action) => {
+      // Pending
+      .addMatcher(
+        (action) => action.type.startsWith("public/") && action.type.endsWith("/pending"),
+        (state) => {
+          state.loading = true;
+          state.error = null;
+          state.success = false;
+        }
+      )
+
+      // Rejected
+      .addMatcher(
+        (action) => action.type.startsWith("public/") && action.type.endsWith("/rejected"),
+        (state, action) => {
+          state.loading = false;
+          state.error = action.payload || action.error.message;
+        }
+      )
+
+      // Home
+      .addCase(getHomeData.fulfilled, (state, action) => {
         state.loading = false;
-        state.featuredCategories = action.payload;
-      })
-      .addCase(fetchFeaturedCategories.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.homeData = action.payload;
       })
 
       // Featured Products
-      .addCase(fetchFeaturedProducts.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchFeaturedProducts.fulfilled, (state, action) => {
+      .addCase(getFeaturedProducts.fulfilled, (state, action) => {
         state.loading = false;
         state.featuredProducts = action.payload;
       })
-      .addCase(fetchFeaturedProducts.rejected, (state, action) => {
+
+      // Categories
+      .addCase(getCategories.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.categories = action.payload;
       })
 
-      // New Arrivals
-      .addCase(fetchNewArrivals.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchNewArrivals.fulfilled, (state, action) => {
+      // Deals
+      .addCase(getDeals.fulfilled, (state, action) => {
         state.loading = false;
-        state.newArrivals = action.payload;
+        state.deals = action.payload;
       })
-      .addCase(fetchNewArrivals.rejected, (state, action) => {
+
+      // Brands
+      .addCase(getBrands.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.brands = action.payload;
       })
 
       // Testimonials
-      .addCase(fetchTestimonials.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(fetchTestimonials.fulfilled, (state, action) => {
+      .addCase(getTestimonials.fulfilled, (state, action) => {
         state.loading = false;
         state.testimonials = action.payload;
       })
-      .addCase(fetchTestimonials.rejected, (state, action) => {
+
+      // Blogs
+      .addCase(getBlogs.fulfilled, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.blogs = action.payload;
+      })
+
+      // Blog Details
+      .addCase(getBlogDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.blogDetails = action.payload;
+      })
+
+      // Contact Form
+      .addCase(submitContactForm.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
       })
 
       // Newsletter
-      .addCase(subscribeNewsletter.pending, (state) => {
-        state.newsletterLoading = true;
-        state.newsletterSuccess = false;
-      })
       .addCase(subscribeNewsletter.fulfilled, (state) => {
-        state.newsletterLoading = false;
-        state.newsletterSuccess = true;
-      })
-      .addCase(subscribeNewsletter.rejected, (state, action) => {
-        state.newsletterLoading = false;
-        state.error = action.payload;
-      })
-
-      // Contact
-      .addCase(sendContactMessage.pending, (state) => {
-        state.contactLoading = true;
-        state.contactSuccess = false;
-      })
-      .addCase(sendContactMessage.fulfilled, (state) => {
-        state.contactLoading = false;
-        state.contactSuccess = true;
-      })
-      .addCase(sendContactMessage.rejected, (state, action) => {
-        state.contactLoading = false;
-        state.error = action.payload;
+        state.loading = false;
+        state.success = true;
       });
   },
 });
 
 export const {
-  clearNewsletterStatus,
-  clearContactStatus,
   clearError,
+  clearSuccess,
+  clearBlogDetails,
 } = publicSlice.actions;
 
 export default publicSlice.reducer;

@@ -1,50 +1,140 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as publicService from "../services/publicService";
 
-// Featured Categories
-export const fetchFeaturedCategories = createAsyncThunk(
-  "public/fetchFeaturedCategories",
-  async (_, { rejectWithValue }) => {
+import {
+  fetchHomeData,
+  fetchFeaturedProducts,
+  fetchCategories,
+  fetchDeals,
+  fetchBrands,
+  fetchTestimonials,
+  fetchBlogs,
+  fetchBlogDetails,
+  contactUs,
+  subscribeToNewsletter,
+} from "../services";
+
+// Home
+export const getHomeData = createAsyncThunk(
+  "public/getHomeData",
+  async (_, thunkAPI) => {
     try {
-      return await publicService.getFeaturedCategories();
+      return await fetchHomeData();
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
     }
   }
 );
 
 // Featured Products
-export const fetchFeaturedProducts = createAsyncThunk(
-  "public/fetchFeaturedProducts",
-  async (_, { rejectWithValue }) => {
+export const getFeaturedProducts = createAsyncThunk(
+  "public/getFeaturedProducts",
+  async (_, thunkAPI) => {
     try {
-      return await publicService.getFeaturedProducts();
+      return await fetchFeaturedProducts();
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
     }
   }
 );
 
-// New Arrivals
-export const fetchNewArrivals = createAsyncThunk(
-  "public/fetchNewArrivals",
-  async (_, { rejectWithValue }) => {
+// Categories
+export const getCategories = createAsyncThunk(
+  "public/getCategories",
+  async (_, thunkAPI) => {
     try {
-      return await publicService.getNewArrivals();
+      return await fetchCategories();
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
+
+// Deals
+export const getDeals = createAsyncThunk(
+  "public/getDeals",
+  async (_, thunkAPI) => {
+    try {
+      return await fetchDeals();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
+
+// Brands
+export const getBrands = createAsyncThunk(
+  "public/getBrands",
+  async (_, thunkAPI) => {
+    try {
+      return await fetchBrands();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
     }
   }
 );
 
 // Testimonials
-export const fetchTestimonials = createAsyncThunk(
-  "public/fetchTestimonials",
-  async (_, { rejectWithValue }) => {
+export const getTestimonials = createAsyncThunk(
+  "public/getTestimonials",
+  async (_, thunkAPI) => {
     try {
-      return await publicService.getTestimonials();
+      return await fetchTestimonials();
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
+
+// Blogs
+export const getBlogs = createAsyncThunk(
+  "public/getBlogs",
+  async (_, thunkAPI) => {
+    try {
+      return await fetchBlogs();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
+
+// Blog Details
+export const getBlogDetails = createAsyncThunk(
+  "public/getBlogDetails",
+  async (slug, thunkAPI) => {
+    try {
+      return await fetchBlogDetails(slug);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
+    }
+  }
+);
+
+// Contact
+export const submitContactForm = createAsyncThunk(
+  "public/submitContactForm",
+  async (payload, thunkAPI) => {
+    try {
+      return await contactUs(payload);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
     }
   }
 );
@@ -52,23 +142,13 @@ export const fetchTestimonials = createAsyncThunk(
 // Newsletter
 export const subscribeNewsletter = createAsyncThunk(
   "public/subscribeNewsletter",
-  async (data, { rejectWithValue }) => {
+  async (payload, thunkAPI) => {
     try {
-      return await publicService.subscribeNewsletter(data);
+      return await subscribeToNewsletter(payload);
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
-
-// Contact
-export const sendContactMessage = createAsyncThunk(
-  "public/sendContactMessage",
-  async (data, { rejectWithValue }) => {
-    try {
-      return await publicService.sendContactMessage(data);
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data || error.message
+      );
     }
   }
 );

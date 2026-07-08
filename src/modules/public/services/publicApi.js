@@ -1,24 +1,30 @@
 import api from "../../../config/axios";
-export const getFeaturedProductsApi = () => {
-  return api.get("/products/featured");
-};
+export const getHomeData = () =>
+  api.get("/home");
 
-export const getFeaturedCategoriesApi = () => {
-  return api.get("/categories/featured");
-};
+export const getFeaturedProducts = () =>
+  api.get("/products/featured");
 
-export const getNewArrivalsApi = () => {
-  return api.get("/products/new-arrivals");
-};
+export const getCategories = () =>
+  api.get("/categories");
 
-export const getTestimonialsApi = () => {
-  return api.get("/testimonials");
-};
+export const getDeals = () =>
+  api.get("/deals");
 
-export const subscribeNewsletterApi = (data) => {
-  return api.post("/newsletter/subscribe", data);
-};
+export const getBrands = () =>
+  api.get("/brands");
 
-export const sendContactMessageApi = (data) => {
-  return api.post("/contact", data);
-};
+export const getTestimonials = () =>
+  api.get("/testimonials");
+
+export const getBlogs = () =>
+  api.get("/blogs");
+
+export const getBlogDetails = (slug) =>
+  api.get(`/blogs/${slug}`);
+
+export const sendContactMessage = (data) =>
+  api.post("/contact", data);
+
+export const subscribeNewsletter = (data) =>
+  api.post("/newsletter/subscribe", data);

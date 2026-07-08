@@ -1,31 +1,46 @@
-export const selectPublic = (state) => state.public;
+// Root State
+export const selectPublicState = (state) => state.public;
 
-export const selectFeaturedCategories = (state) =>
-  state.public.featuredCategories;
+// Home
+// export const selectHomeData = (state) =>
+//   state.public.homeData;
 
+// Featured Products
 export const selectFeaturedProducts = (state) =>
   state.public.featuredProducts;
 
-export const selectNewArrivals = (state) =>
-  state.public.newArrivals;
+// Categories
+export const selectCategories = (state) =>
+  state.public.categories;
 
+// Deals
+export const selectDeals = (state) =>
+  state.public.deals;
+
+// Brands
+export const selectBrands = (state) =>
+  state.public.brands;
+
+// Testimonials
 export const selectTestimonials = (state) =>
   state.public.testimonials;
 
-export const selectLoading = (state) =>
+// Blogs
+export const selectBlogs = (state) =>
+  state.public.blogs;
+
+// Blog Details
+export const selectBlogDetails = (state) =>
+  state.public.blogDetails;
+
+// Loading
+export const selectPublicLoading = (state) =>
   state.public.loading;
 
-export const selectError = (state) =>
+// Success
+export const selectPublicSuccess = (state) =>
+  state.public.success;
+
+// Error
+export const selectPublicError = (state) =>
   state.public.error;
-
-export const selectNewsletterLoading = (state) =>
-  state.public.newsletterLoading;
-
-export const selectNewsletterSuccess = (state) =>
-  state.public.newsletterSuccess;
-
-export const selectContactLoading = (state) =>
-  state.public.contactLoading;
-
-export const selectContactSuccess = (state) =>
-  state.public.contactSuccess;

@@ -10,12 +10,14 @@ import { ROLES, ROUTES } from "./route.constants";
 
 // Pages
 import Home from "../modules/public/pages/Home";
-import About from "../modules/public/pages/About";
-import Contact from "../modules/public/pages/Contact";
-import Privacy from "../modules/public/pages/Privacy";
+// import About from "../modules/public/pages/About";
+// import Contact from "../modules/public/pages/Contact";
+// import Privacy from "../modules/public/pages/Privacy";
 import AdminLayout from "../shared/layout/AdminLayout";
 import AuthLayout from "../shared/layout/AuthLayout";
-import Terms from "../modules/public/pages/Terms";
+import { About, Privacy } from "../modules/public";
+import { Contact } from "lucide-react";
+// import Terms from "../modules/public/pages/Terms";
 // import LoginPage from "../features/auth/pages/LoginPage";
 
 const router = createBrowserRouter([
@@ -27,7 +29,7 @@ const router = createBrowserRouter([
       { path: ROUTES.ABOUT, element: <About /> },
       { path: ROUTES.CONTACT, element: <Contact /> },
       { path: ROUTES.PRIVACY, element: <Privacy /> },
-      { path: ROUTES.PRIVACY, element: <Terms/> },
+      // { path: ROUTES.PRIVACY, element: <Terms/> },
     ]
   },
   // {

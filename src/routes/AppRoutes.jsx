@@ -101,7 +101,7 @@
 // }
 import { Routes, Route } from "react-router-dom";
 import { ROUTES, ROLES } from "./route.constants";
-
+// import ScrollToTop from "../modules/public/components/common/ScrollToTop";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
 import RoleBasedRoute from "./RoleBasedRoute";
@@ -113,9 +113,12 @@ import Home from "../modules/public/pages/Home";
 import About from "../modules/public/pages/About";
 import Contact from "../modules/public/pages/Contact";
 import Privacy from "../modules/public/pages/Privacy";
+import ScrollToTop from "../modules/public/components/Common/ScrollToTop";
 
 export default function AppRoutes() {
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       {/* Public Routes */}
       <Route element={<MainLayout />}>
@@ -173,5 +176,6 @@ export default function AppRoutes() {
         {/* Admin Pages */}
       </Route>
     </Routes>
+    </>
   );
 }
