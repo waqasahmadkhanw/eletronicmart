@@ -41,4 +41,4 @@ export * from "./faq";
 export * from "./blog";
 
 // Common
-export * from "./common";
+export * from "./Common";
