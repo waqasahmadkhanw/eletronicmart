@@ -24,3 +24,6 @@ export const logoutApi = () => api.post("/auth/logout");
 
 export const refreshTokenApi = (refreshToken) =>
   api.post("/auth/refresh-token", { refreshToken });
+
+export const getCurrentUser = () =>
+  axiosInstance.get("/auth/current-user");

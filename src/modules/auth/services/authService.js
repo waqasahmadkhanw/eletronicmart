@@ -44,3 +44,8 @@ export const refreshToken = async (refreshToken) => {
   const { data } = await authApi.refreshTokenApi(refreshToken);
   return data;
 };
+export const getCurrentUser = async () => {
+  const { data } = await authApi.getCurrentUser();
+
+  return data.data;
+};

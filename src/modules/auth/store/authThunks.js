@@ -105,3 +105,13 @@ export const logout = createAsyncThunk(
     }
   }
 );
+export const fetchCurrentUser = createAsyncThunk(
+  "auth/currentUser",
+  async (_, thunkAPI) => {
+    try {
+      return await authService.getCurrentUser();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data);
+    }
+  }
+);
