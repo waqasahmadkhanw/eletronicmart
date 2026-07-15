@@ -7,7 +7,7 @@ const navLinks = [
   { label: "Categories", path: "/categories" },
   { label: "About", path: "/about" },
   { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  { label: "Contact", path: "/contact-us" },
 ];
 
 const MobileMenu = ({ isOpen, onClose }) => {
@@ -30,7 +30,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
             onClick={onClose}
             className="text-2xl font-bold text-blue-600"
           >
-            MERN Store
+            Electronicmart Store
           </Link>
 
           <button

@@ -46,7 +46,7 @@ const NewsletterForm = () => {
       validationSchema={newsletterSchema}
       onSubmit={handleSubmit}
     >
-      <Form className="mx-auto max-w-2xl">
+      <Form className="mx-auto max-w-2xl ">
         <div className="flex flex-col gap-4 md:flex-row">
           <div className="relative flex-1">
             <Mail

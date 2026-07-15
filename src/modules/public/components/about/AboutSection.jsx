@@ -8,16 +8,31 @@ import {
 
 const AboutSection = () => {
   return (
-    <main className="bg-white dark:bg-slate-950">
+    <main className="overflow-hidden bg-white ">
+      {/* Hero */}
       <AboutHero />
 
-      <AboutStory />
+      {/* Story */}
+      <section className="relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-red from-transparent via-slate-200 to-transparent" />
+        <AboutStory />
+      </section>
 
-      <AboutStats />
+      {/* Stats */}
+      <section className="relative bg-gradient-to-blue from-slate-50 to-white">
+        <AboutStats />
+      </section>
 
-      <AboutValues />
+      {/* Values */}
+      <section className="relative">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-red from-transparent via-slate-200 to-transparent" />
+        <AboutValues />
+      </section>
 
-      <AboutCTA />
+      {/* CTA */}
+      <section className="relative">
+        <AboutCTA />
+      </section>
     </main>
   );
 };

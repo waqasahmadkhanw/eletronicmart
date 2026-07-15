@@ -27,19 +27,22 @@
 //     </Provider>
 //   );
 // }
-import { Provider } from "react-redux";
+// import { Provider } from "react-redux";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
-
 import { store } from "./store";
 import { queryClient } from "../config/queryClient";
 import { ENV } from "../config/env";
+import { Provider } from "react-redux";
+import { ThemeProvider } from "../shared/theme";
 
 export default function AppProvider({ children }) {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
+
+        <ThemeProvider>
         {children}
 
         <Toaster
@@ -55,7 +58,9 @@ export default function AppProvider({ children }) {
         {ENV.IS_DEV && (
           <ReactQueryDevtools initialIsOpen={false} />
         )}
+         </ThemeProvider>
       </QueryClientProvider>
+    
     </Provider>
   );
 }

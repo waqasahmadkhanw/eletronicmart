@@ -20,9 +20,9 @@ const MainHeader = ({ onMenuClick }) => {
         </button>
 
         {/* Logo */}
-        <Link to="/" className="shrink-0">
+        {/* <Link to="/" className="shrink-0"> */}
           <Logo />
-        </Link>
+        {/* </Link> */}
 
         {/* Search */}
         <div className="hidden flex-1 px-6 lg:block">

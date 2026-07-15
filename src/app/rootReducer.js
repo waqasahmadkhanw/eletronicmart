@@ -9,7 +9,7 @@ import { publicReducer } from "../modules/public";
 // import cartReducer from "../features/cart/cartSlice";
 // import wishlistReducer from "../features/wishlist/wishlistSlice";
 // import compareReducer from "../features/compare/compareSlice";
-// import themeReducer from "../features/theme/themeSlice";
+import themeReducer from "../modules/theme/themeSlice";
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -24,5 +24,5 @@ export const rootReducer = combineReducers({
 
   // compare: compareReducer,
 
-  // theme: themeReducer,
+ theme: themeReducer,
 });

@@ -11,7 +11,8 @@ const navItems = [
   { label: "Categories", path: "/categories" },
   { label: "Blog", path: "/blog" },
   { label: "About", path: "/about" },
-  { label: "Contact", path: "/contact" },
+  { label: "Contact", path: "/contact-us" },
+  { label: "Privacy", path: "/privacy" },
 ];
 
 const NavLinks = () => {

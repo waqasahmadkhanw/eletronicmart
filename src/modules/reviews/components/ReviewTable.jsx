@@ -1,3 +1,15 @@
+import React from "react";
+import {
+  Eye,
+  Pencil,
+  Trash2,
+  MessageSquareQuote,
+  Package,
+  User,
+  CalendarDays,
+  Star,
+} from "lucide-react";
+
 import RatingStars from "./RatingStars";
 
 const ReviewTable = ({
@@ -8,96 +20,194 @@ const ReviewTable = ({
 }) => {
   if (!reviews.length) {
     return (
-      <div className="rounded-lg border border-dashed border-gray-300 bg-white p-8 text-center text-gray-500">
-        No reviews found.
+      <div className="flex h-80 flex-col items-center justify-center rounded-3xl border border-dashed border-slate-300 bg-white shadow-sm">
+        <div className="rounded-full bg-slate-100 p-5">
+          <MessageSquareQuote
+            size={42}
+            className="text-slate-400"
+          />
+        </div>
+
+        <h3 className="mt-5 text-xl font-bold text-slate-800">
+          No Reviews Found
+        </h3>
+
+        <p className="mt-2 max-w-sm text-center text-sm text-slate-500">
+          Customer reviews will appear here once they
+          are submitted.
+        </p>
       </div>
     );
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl bg-white shadow">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
-              Title
-            </th>
+    <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-slate-200 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 px-6 py-5">
+        <div>
+          <h2 className="text-xl font-bold text-white">
+            Customer Reviews
+          </h2>
 
-            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
-              Product
-            </th>
+          <p className="mt-1 text-sm text-blue-100">
+            Manage customer feedback and ratings
+          </p>
+        </div>
 
-            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
-              Customer
-            </th>
+        <div className="rounded-xl bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
+          {reviews.length} Reviews
+        </div>
+      </div>
 
-            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
-              Rating
-            </th>
+      <div className="overflow-x-auto">
+        <table className="min-w-[1200px] w-full">
+          <thead className="bg-slate-50">
+            <tr className="border-b border-slate-200">
+              <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+                Review
+              </th>
 
-            <th className="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-600">
-              Date
-            </th>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+                Product
+              </th>
 
-            <th className="px-6 py-3 text-center text-xs font-semibold uppercase tracking-wide text-gray-600">
-              Actions
-            </th>
-          </tr>
-        </thead>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+                Customer
+              </th>
 
-        <tbody className="divide-y divide-gray-200 bg-white">
-          {reviews.map((review) => (
-            <tr key={review._id} className="hover:bg-gray-50">
-              <td className="px-6 py-4 font-medium text-gray-800">
-                {review.title}
-              </td>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+                Rating
+              </th>
 
-              <td className="px-6 py-4 text-gray-600">
-                {review.product?.name || "-"}
-              </td>
+              <th className="px-6 py-4 text-left text-sm font-semibold text-slate-700">
+                Date
+              </th>
 
-              <td className="px-6 py-4 text-gray-600">
-                {review.user?.name || "Anonymous"}
-              </td>
-
-              <td className="px-6 py-4">
-                <RatingStars rating={review.rating} size={18} />
-              </td>
-
-              <td className="px-6 py-4 text-gray-600">
-                {review.createdAt
-                  ? new Date(review.createdAt).toLocaleDateString()
-                  : "-"}
-              </td>
-
-              <td className="px-6 py-4">
-                <div className="flex justify-center gap-2">
-                  <button
-                    onClick={() => onView?.(review)}
-                    className="rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700"
-                  >
-                    View
-                  </button>
-
-                  <button
-                    onClick={() => onEdit?.(review)}
-                    className="rounded-md bg-amber-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-amber-600"
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={() => onDelete?.(review._id)}
-                    className="rounded-md bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
+              <th className="px-6 py-4 text-center text-sm font-semibold text-slate-700">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {reviews.map((review) => (
+              <tr
+                key={review._id || review.id}
+                className="border-b border-slate-100 transition-all duration-300 hover:bg-blue-50/40"
+              >
+                {/* Review */}
+                <td className="px-6 py-5">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-100">
+                      <MessageSquareQuote
+                        size={22}
+                        className="text-blue-600"
+                      />
+                    </div>
+
+                    <div className="max-w-xs">
+                      <h3 className="font-semibold text-slate-800">
+                        {review.title}
+                      </h3>
+
+                      <p className="mt-1 line-clamp-2 text-sm text-slate-500">
+                        {review.comment}
+                      </p>
+                    </div>
+                  </div>
+                </td>
+
+                {/* Product */}
+                <td className="px-6 py-5">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-3 py-1.5 text-sm font-medium text-indigo-700">
+                    <Package size={14} />
+                    {review.product?.name || "-"}
+                  </span>
+                </td>
+
+                {/* Customer */}
+                <td className="px-6 py-5">
+                  <div className="flex items-center gap-2">
+                    <User
+                      size={16}
+                      className="text-slate-400"
+                    />
+
+                    <span className="font-medium text-slate-700">
+                      {review.user?.name ||
+                        "Anonymous"}
+                    </span>
+                  </div>
+                </td>
+
+                {/* Rating */}
+                <td className="px-6 py-5">
+                  <div className="flex items-center gap-3">
+                    <RatingStars
+                      rating={review.rating}
+                      size={18}
+                    />
+
+                    <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-700">
+                      <Star
+                        size={12}
+                        className="mr-1 inline fill-current"
+                      />
+                      {review.rating}
+                    </span>
+                  </div>
+                </td>
+
+                {/* Date */}
+                <td className="px-6 py-5">
+                  <div className="flex items-center gap-2 text-sm text-slate-600">
+                    <CalendarDays size={16} />
+
+                    {review.createdAt
+                      ? new Date(
+                          review.createdAt
+                        ).toLocaleDateString()
+                      : "-"}
+                  </div>
+                </td>
+
+                {/* Actions */}
+                <td className="px-6 py-5">
+                  <div className="flex justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => onView?.(review)}
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg"
+                    >
+                      <Eye size={18} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => onEdit?.(review)}
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-600 hover:shadow-lg"
+                    >
+                      <Pencil size={18} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        onDelete?.(
+                          review._id || review.id
+                        )
+                      }
+                      className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-600 text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-700 hover:shadow-lg"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

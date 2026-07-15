@@ -14,7 +14,7 @@ const BrandCard = ({ brand }) => {
         <img
           src={logo}
           alt={name}
-          className="h-14 max-w-[140px] object-contain grayscale transition duration-300 group-hover:grayscale-0"
+          className="h-14 max-w[140px] object-contain grayscale transition duration-300 group-hover:grayscale-0"
         />
       </div>
 

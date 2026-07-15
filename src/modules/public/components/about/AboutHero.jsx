@@ -11,7 +11,7 @@ const AboutHero = () => {
           alt="About Banner"
           className="h-full w-full object-cover opacity-20"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-slate-950" />
+        <div className="absolute inset-0 bg-gradient-to-red from-slate-950 via-slate-900/90 to-slate-950" />
       </div>
 
       {/* Decorative Blur */}
@@ -55,7 +55,7 @@ const AboutHero = () => {
             exceptional customer service—all in one modern marketplace.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-10 flex flex-wrap gap-4 mb-8">
             <Link
               to="/products"
               className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-7 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-700"
@@ -65,10 +65,10 @@ const AboutHero = () => {
             </Link>
 
             <Link
-              to="/contact"
+              to="/contact-us"
               className="inline-flex items-center gap-2 rounded-xl border border-gray-600 px-7 py-4 font-semibold text-white transition-all duration-300 hover:border-blue-500 hover:bg-blue-600"
             >
-              Contact Us
+              Contact Us 
               <ArrowRight size={18} />
             </Link>
           </div>

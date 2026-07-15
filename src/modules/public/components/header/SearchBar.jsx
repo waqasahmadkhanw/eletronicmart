@@ -84,9 +84,9 @@ const SearchBar = () => {
         {/* Search Button */}
         <button
           type="submit"
-          className="flex items-center justify-center bg-blue-600 px-5 text-white transition hover:bg-blue-700"
+          className="flex items-center justify-center  bg-blue-600 px-5 text-white transition hover:bg-blue-700"
         >
-          <Search size={20} />
+          <Search size={18} />
         </button>
       </form>
 

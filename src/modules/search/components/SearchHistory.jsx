@@ -1,82 +1,130 @@
 import React from "react";
+import {
+  History,
+  Trash2,
+  Search,
+  ArrowUpRight,
+  Clock3,
+} from "lucide-react";
 
 const SearchHistory = ({
   history = [],
   onSelect,
   onClear,
 }) => {
-  if (!history.length) {
-    return (
-      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-        <h3 className="mb-2 text-lg font-semibold">
-          Recent Searches
-        </h3>
-
-        <p className="text-sm text-gray-500">
-          No search history found.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-semibold">
-          Recent Searches
-        </h3>
+    <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-slate-100 bg-gradient-to-r from-slate-900 to-slate-800 px-5 py-4">
+        <div className="flex items-center gap-3">
+          <div className="rounded-xl bg-white/10 p-2 text-white">
+            <History size={20} />
+          </div>
 
-        <button
-          type="button"
-          onClick={onClear}
-          className="text-sm font-medium text-red-600 transition hover:text-red-700"
-        >
-          Clear All
-        </button>
+          <div>
+            <h3 className="text-lg font-bold text-white">
+              Recent Searches
+            </h3>
+            <p className="text-xs text-slate-300">
+              Quickly access previous searches
+            </p>
+          </div>
+        </div>
+
+        {!!history.length && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="flex items-center gap-2 rounded-xl border border-red-400/20 bg-red-500/10 px-3 py-2 text-sm font-medium text-red-200 transition hover:bg-red-500/20"
+          >
+            <Trash2 size={16} />
+            <span className="hidden sm:inline">
+              Clear
+            </span>
+          </button>
+        )}
       </div>
 
-      <ul className="space-y-2">
-        {history.map((item, index) => {
-          const value =
-            typeof item === "string"
-              ? item
-              : item.query || item.keyword || "";
+      {/* Empty State */}
+      {!history.length ? (
+        <div className="flex flex-col items-center justify-center px-6 py-12 text-center">
+          <div className="mb-4 rounded-2xl bg-slate-100 p-4">
+            <Clock3
+              size={34}
+              className="text-slate-400"
+            />
+          </div>
 
-          return (
-            <li key={item._id || item.id || index}>
-              <button
-                type="button"
-                onClick={() => onSelect?.(value)}
-                className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left transition hover:bg-gray-100"
-              >
-                <span className="truncate text-gray-700">
-                  {value}
-                </span>
+          <h4 className="text-base font-semibold text-slate-800">
+            No Recent Searches
+          </h4>
 
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
+          <p className="mt-2 max-w-xs text-sm leading-6 text-slate-500">
+            Your recent searches will appear here so
+            you can quickly search again.
+          </p>
+        </div>
+      ) : (
+        <div className="p-4">
+          <ul className="space-y-2">
+            {history.map((item, index) => {
+              const value =
+                typeof item === "string"
+                  ? item
+                  : item.query ||
+                    item.keyword ||
+                    "";
+
+              return (
+                <li
+                  key={
+                    item._id ||
+                    item.id ||
+                    index
+                  }
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m12 5 7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      onSelect?.(value)
+                    }
+                    className="group flex w-full items-center justify-between rounded-2xl border border-transparent bg-slate-50 px-4 py-3 transition-all duration-300 hover:border-blue-200 hover:bg-blue-50"
+                  >
+                    <div className="flex min-w-0 items-center gap-3">
+                      <div className="rounded-lg bg-blue-100 p-2 text-blue-600 transition group-hover:bg-blue-600 group-hover:text-white">
+                        <Search size={16} />
+                      </div>
+
+                      <span className="truncate text-sm font-medium text-slate-700 sm:text-[15px]">
+                        {value}
+                      </span>
+                    </div>
+
+                    <ArrowUpRight
+                      size={17}
+                      className="text-slate-400 transition group-hover:text-blue-600"
+                    />
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Footer */}
+          <div className="mt-5 rounded-2xl bg-slate-50 p-4">
+            <p className="text-center text-xs leading-5 text-slate-500">
+              Showing{" "}
+              <span className="font-semibold text-slate-700">
+                {history.length}
+              </span>{" "}
+              recent{" "}
+              {history.length === 1
+                ? "search"
+                : "searches"}.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
